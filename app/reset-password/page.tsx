@@ -10,7 +10,7 @@ import { Box, Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
 
 
-export default function Home() {
+export default function RestPassword() {
   return (
     <AuthLayout>
       <Box
@@ -22,9 +22,9 @@ export default function Home() {
       >
         <Stack
           width={{xs:'95%', sm:480}}
-          height={{xs:450, sm:440}}
-          maxWidth={480}
-          maxHeight={{xs:450, sm:440}}
+          height={377}
+          maxWidth={{xs:'95%', sm:480}}
+          maxHeight={377}
           justifyContent={'flex-end'}
           sx={{
             backgroundColor: colors.voilet900,
@@ -32,26 +32,19 @@ export default function Home() {
             p: {xs:'32px', sm:'64px'},
             border: "1.5px",
             borderColor: colors.gray700,
-            gap:{xs: '24px',sm:'42px'}
+            gap:{xs:'24px', sm:'42px'}
           }}
         >
-          <CustomText text="Welcom Back!" fw400 h1 align="center" />
+          <CustomText text="Reset Password" fw400 h1 align="center" />
           <Stack gap={'16px'}>
             <Stack gap={'16px'}>
-              <StyledTextField label="Email" type="email" />
-              <Stack gap={1}>
-                <StyledTextField label='Password' type="text"/>
-                <CustomLink title="Forgot Password" link="/forgot-password" type={2} align="right"/>
-              </Stack>
+              <StyledTextField label="New Password" type="text" />
+              <StyledTextField label="Confirm Password" type="text" />
             </Stack>
             <CustomButton
-              title="Login"
+              title="Reset Password"
               onClick={() => console.log("pressed")}
             />
-            <Stack flexDirection={'row'} alignItems={'center'} justifyContent={'center'} gap={'4px'}>
-              <CustomText text="Don't have an account?" fw400 p1 color={colors.gray500}/>
-              <CustomLink title="Sign up" link='/create-account'/>
-            </Stack>
           </Stack>
         </Stack>
       </Box>

@@ -6,9 +6,10 @@ interface CustomLinkProps {
   title: string;
   link: string;
   type?: number;
+  align?:'left' | 'center' | 'right';
 }
 
-export default function CustomLink({ title, link, type=1 }: CustomLinkProps) {
+export default function CustomLink({ title, link, type=1, align }: CustomLinkProps) {
   switch(type){
     case 1:
       return (
@@ -19,7 +20,7 @@ export default function CustomLink({ title, link, type=1 }: CustomLinkProps) {
       case 2:
         return (
           <Link href={link}>
-            <CustomText text={title}  p2 fw400 />
+            <CustomText text={title}  p2 fw400 align={align}/>
           </Link>
         );
       default:

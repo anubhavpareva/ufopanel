@@ -6,6 +6,8 @@ export const colors = {
     /**Gray Colors */
     gray500:'#7B7B7B',
     gray700:'#1E1E1E',
+    gray800:'#191919',
+    gray900:'#727272',
     /**blue color */
     blue100:'#009FFF',
     /**white color */
