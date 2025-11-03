@@ -1,5 +1,6 @@
 "use client";
 
+import BackButton from "@/Components/Shared-ui/BackButton";
 import CustomButton from "@/Components/Shared-ui/CustomButton";
 import CustomLink from "@/Components/Shared-ui/CustomLink";
 import CustomText from "@/Components/Shared-ui/CustomText";
@@ -27,6 +28,7 @@ export default function ForgotPassword() {
           maxHeight={377}
           justifyContent={'flex-end'}
           sx={{
+            position:'relative',
             backgroundColor: colors.voilet900,
             borderRadius: "32px",
             p: {xs:'32px', sm:'64px'},
@@ -35,6 +37,9 @@ export default function ForgotPassword() {
             gap:{xs:'24px', sm:'42px'}
           }}
         >
+          <Box position={'absolute'} top={10} left={10} width={'48px'} height={'48px'}>
+            <BackButton />
+          </Box>
           <CustomText text="Forgot Password" fw400 h1 align="center" />
           <Stack gap={'16px'}>
             <Stack gap={'16px'}>

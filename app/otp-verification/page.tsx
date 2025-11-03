@@ -1,5 +1,6 @@
 "use client";
 import OTPInput from "@/Components/OtpInput";
+import BackButton from "@/Components/Shared-ui/BackButton";
 import CustomButton from "@/Components/Shared-ui/CustomButton";
 import CustomText from "@/Components/Shared-ui/CustomText";
 import { colors } from "@/Constants/colors";
@@ -56,6 +57,7 @@ export default function OtpVerification() {
           maxHeight={{ sx: 650, sm: 377 }}
           justifyContent={"flex-end"}
           sx={{
+            position:'relative',
             backgroundColor: colors.voilet900,
             borderRadius: "32px",
             px: "64px",
@@ -65,6 +67,9 @@ export default function OtpVerification() {
             gap: "24px",
           }}
         >
+          <Box position={'absolute'} top={10} left={10} width={'48px'} height={'48px'}>
+            <BackButton />
+          </Box>
           <CustomText text="Verify Your OTP!" fw400 h1 align="center" />
           <Stack gap={"14px"}>
             <CustomText

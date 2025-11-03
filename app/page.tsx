@@ -1,5 +1,6 @@
 "use client";
 
+import BackButton from "@/Components/Shared-ui/BackButton";
 import CustomButton from "@/Components/Shared-ui/CustomButton";
 import CustomLink from "@/Components/Shared-ui/CustomLink";
 import CustomText from "@/Components/Shared-ui/CustomText";
@@ -11,6 +12,10 @@ import { useRouter } from "next/navigation";
 
 
 export default function Home() {
+  const navigate = useRouter();
+  const handleLogin = () =>{
+    navigate.push('/dashboard');
+  }
   return (
     <AuthLayout>
       <Box
@@ -27,6 +32,7 @@ export default function Home() {
           maxHeight={{xs:450, sm:440}}
           justifyContent={'flex-end'}
           sx={{
+            position:'relative',
             backgroundColor: colors.voilet900,
             borderRadius: "32px",
             p: {xs:'32px', sm:'64px'},
@@ -35,6 +41,9 @@ export default function Home() {
             gap:{xs: '24px',sm:'42px'}
           }}
         >
+          <Box position={'absolute'} top={10} left={10} width={'48px'} height={'48px'}>
+            <BackButton />
+          </Box>
           <CustomText text="Welcom Back!" fw400 h1 align="center" />
           <Stack gap={'16px'}>
             <Stack gap={'16px'}>
@@ -46,7 +55,7 @@ export default function Home() {
             </Stack>
             <CustomButton
               title="Login"
-              onClick={() => console.log("pressed")}
+              onClick={handleLogin}
             />
             <Stack flexDirection={'row'} alignItems={'center'} justifyContent={'center'} gap={'4px'}>
               <CustomText text="Don't have an account?" fw400 p1 color={colors.gray500}/>
