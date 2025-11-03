@@ -128,6 +128,7 @@ export default function Home() {
               <CustomButton
                 title={isLoading ? "Logging in..." : "Login"}
                 onClick={handleSubmit(handleLogin)}
+                disabled={isLoading}
               />
 
               {/* Signup Link */}

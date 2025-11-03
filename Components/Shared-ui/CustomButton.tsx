@@ -9,6 +9,7 @@ interface CustomButtonProp {
   flex?: 0 | 1;
   type?: number;
   imgSrc?: string | null;
+  disabled?:boolean;
 }
 
 export default function CustomButton({
@@ -17,6 +18,7 @@ export default function CustomButton({
   flex = 0,
   type = 0,
   imgSrc = null,
+  disabled=false,
 }: CustomButtonProp) {
   switch (type) {
     case 1:
@@ -29,7 +31,8 @@ export default function CustomButton({
             borderRadius: "32px",
             flex: flex ? 1 : 0,
             border:1,
-            borderColor:colors.gray600
+            borderColor:colors.gray600,
+            cursor:'pointer'
           }}
         >
           <CustomText text={title} color={colors.gray500} p1 fw400 />
@@ -45,8 +48,10 @@ export default function CustomButton({
             py: "17px",
             borderRadius: "32px",
             flex: flex ? 1 : 0,
-            maxWidth:350
+            maxWidth:350,
+            cursor:'pointer'
           }}
+          disabled={disabled}
         >
          {imgSrc && <Image src={imgSrc} alt='btn Icon' width={24} height={24}/>}
           <CustomText text={title} color={colors.black50} p1 fw400 />
