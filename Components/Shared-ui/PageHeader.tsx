@@ -16,6 +16,9 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import CustomText from "./CustomText";
 import { useState } from "react";
+import CustomDialog from "./CustomDialog";
+import LogoutDialog from "../Dialog-content/LogoutDialog";
+import { useRouter } from "next/navigation";
 
 interface PageHeaderProps {
   title: string;
@@ -23,7 +26,9 @@ interface PageHeaderProps {
 
 export default function PageHeader({ title }: PageHeaderProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [openDialog, setDialog] = useState(false);
   const open = Boolean(anchorEl);
+  const router = useRouter();
 
   const handleAvatarClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -31,6 +36,16 @@ export default function PageHeader({ title }: PageHeaderProps) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleSetting = () =>{
+    router.push('/dashboard/settings');
+  }
+  const handleDialog = () => {
+    setDialog(true);
+    setAnchorEl(null);
+  };
+  const closeDialog = () => {
+    setDialog(false);
   };
 
   return (
@@ -129,7 +144,7 @@ export default function PageHeader({ title }: PageHeaderProps) {
           }}
         >
           <MenuItem
-            onClick={handleClose}
+            onClick={handleSetting}
             sx={{
               borderRadius: "8px",
               "&:hover": { backgroundColor: "#1B1035" },
@@ -141,7 +156,7 @@ export default function PageHeader({ title }: PageHeaderProps) {
             Settings
           </MenuItem>
           <MenuItem
-            onClick={handleClose}
+            onClick={handleDialog}
             sx={{
               borderTop: "1px solid rgba(255,255,255,0.1)",
               mt: 1,
@@ -155,6 +170,11 @@ export default function PageHeader({ title }: PageHeaderProps) {
           </MenuItem>
         </Menu>
       </Box>
+      <CustomDialog
+        open={openDialog}
+        handleClose={closeDialog}
+        content={<LogoutDialog handleClose={closeDialog}/>}
+      />
     </Box>
   );
 }

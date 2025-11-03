@@ -4,6 +4,8 @@ import { Typography } from "@mui/material";
 interface CustomTextProp {
   /**font size */
   h1?: boolean;
+  h5?:boolean;
+  h6?:boolean
   p1?: boolean;
   p2?: boolean;
   /**Font Weight */
@@ -22,6 +24,8 @@ interface CustomTextProp {
 
 export default function CustomText({
   h1 = false,
+  h5 = false,
+  h6 = false,
   p1 = false,
   p2 = false,
   fw200 = false,
@@ -37,6 +41,8 @@ export default function CustomText({
 }: CustomTextProp) {
   const fontSize = (): string => {
     if (h1) return "32px";
+    if(h5) return "20px";
+    if(h6) return '16px';
     if (p1) return "14px";
     if (p2) return "12px";
     return "16px";

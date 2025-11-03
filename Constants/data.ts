@@ -11,3 +11,9 @@ export const menuItems = [
     url: "/dashboard/broker-integration",
   },
 ];
+
+export const settingMenuItems = [
+  { text: "Change Password", icon: icons.changePassword, value:"change-password" },
+  { text: "API Keys", icon: icons.apikey, value:"api-key" },
+  { text: "Subscription Management", icon: icons.SubscriptionManagement, value:"subscription" },
+];

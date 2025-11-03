@@ -8,4 +8,9 @@ export const icons = {
     portfolio:'/icons/portfolio.svg',
     marketData:'/icons/market-data.svg',
     borkerIntegration:'/icons/broker-integration.svg',
+    apikey:'/icons/api-key.svg',
+    changePassword:'/icons/change-password.svg',
+    SubscriptionManagement:'/icons/subscription-management.svg',
+    tick:'/icons/tick.svg',
+    edit:'/icons/edit.svg',
 }
