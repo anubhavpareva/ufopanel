@@ -3,6 +3,10 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "@/mui-theme";
+import { Provider } from "react-redux";
+import { persistor, store } from "@/rtk/store";
+import { PersistGate } from "redux-persist/integration/react";
+import ReduxProvider from "@/Components/ReduxProvider";
 
 const switzer = localFont({
   src: [
@@ -38,10 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={switzer.variable}>
       <body>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {children}
-        </ThemeProvider>
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );
