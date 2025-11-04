@@ -36,11 +36,11 @@ export default function LogoutDialog({handleClose}:LogoutDialogProps) {
       <Stack
         justifyContent={"center"}
         alignItems={"center"}
-        width={64}
-        height={64}
+        width={{xs:54, sm:64}}
+        height={{xs:54, sm:64}}
         sx={{ backgroundColor: colors.primary100, borderRadius: "100px" }}
       >
-        <LogoutIcon fontSize="small" sx={{ color: "#fff" }} />
+        <LogoutIcon sx={{ color: "#fff", fontSize:24 }} />
       </Stack>
       <Stack gap={1}>
         <CustomText text="Logout?" h1 fw400 />
@@ -51,7 +51,7 @@ export default function LogoutDialog({handleClose}:LogoutDialogProps) {
           color={colors.gray900}
         />
       </Stack>
-      <Stack flexDirection={'row'} width={'100%'} gap={1}>
+      <Stack flexDirection={{xs:'column', sm:'row'}} width={'100%'} gap={1}>
         <CustomButton title="cancel" onClick={handleClose} flex={1} type={1}/>
         <CustomButton title="Logout" onClick={handleLogout} flex={1}/>
       </Stack>
