@@ -6,6 +6,8 @@ import { colors } from "@/Constants/colors";
 import { useRouter } from "next/navigation";
 import { useLogoutMutation } from "@/rtk/endpoints/authApi";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "@/rtk/feature/authSlice";
 
 interface LogoutDialogProps{
     handleClose:()=>void;
@@ -13,6 +15,7 @@ interface LogoutDialogProps{
 
 export default function LogoutDialog({handleClose}:LogoutDialogProps) {
     const router = useRouter();
+    const dispatch = useDispatch();
     const [logout, {isLoading, isSuccess}]= useLogoutMutation();
     const handleLogout = async () =>{
         try{
@@ -24,6 +27,7 @@ export default function LogoutDialog({handleClose}:LogoutDialogProps) {
     }
     useEffect(()=>{
       if(isSuccess){
+        dispatch(logoutUser());
         router.replace('/');
       }
     },[isSuccess])

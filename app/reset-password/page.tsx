@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import PublicRoute from "@/Components/Shared-ui/PublicWrapper";
 
 // ✅ Validation Schema
 const schema = yup.object({
@@ -58,7 +59,7 @@ export default function ResetPassword() {
             severity: "error",
           })
         );
-        router.replace('/');
+        router.replace("/");
         return;
       }
 
@@ -75,76 +76,80 @@ export default function ResetPassword() {
 
   useEffect(() => {
     if (isSuccess) {
-      dispatch(showAlert({ message: "Password reset success", severity: "success" }));
+      dispatch(
+        showAlert({ message: "Password reset success", severity: "success" })
+      );
       router.replace("/");
     }
   }, [isSuccess, dispatch, router]);
 
   return (
-    <AuthLayout>
-      <Box
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        width={"100%"}
-        height={"100%"}
-      >
-        <Stack
-          width={{ xs: "95%", sm: 480 }}
-          height={377}
-          maxWidth={{ xs: "95%", sm: 480 }}
-          maxHeight={377}
-          justifyContent={"flex-end"}
-          sx={{
-            backgroundColor: colors.voilet900,
-            borderRadius: "32px",
-            p: { xs: "32px", sm: "64px" },
-            border: "1.5px solid",
-            borderColor: colors.gray700,
-            gap: { xs: "24px", sm: "42px" },
-          }}
+    <PublicRoute>
+      <AuthLayout>
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          width={"100%"}
+          height={"100%"}
         >
-          <CustomText text="Reset Password" fw400 h1 align="center" />
+          <Stack
+            width={{ xs: "95%", sm: 480 }}
+            height={377}
+            maxWidth={{ xs: "95%", sm: 480 }}
+            maxHeight={377}
+            justifyContent={"flex-end"}
+            sx={{
+              backgroundColor: colors.voilet900,
+              borderRadius: "32px",
+              p: { xs: "32px", sm: "64px" },
+              border: "1.5px solid",
+              borderColor: colors.gray700,
+              gap: { xs: "24px", sm: "42px" },
+            }}
+          >
+            <CustomText text="Reset Password" fw400 h1 align="center" />
 
-          <form >
-            <Stack gap={"16px"}>
-              <Controller
-                name="password"
-                control={control}
-                render={({ field }) => (
-                  <StyledTextField
-                    {...field}
-                    label="New Password"
-                    type="password"
-                    error={!!errors.password}
-                    helperText={errors.password?.message}
-                  />
-                )}
-              />
+            <form>
+              <Stack gap={"16px"}>
+                <Controller
+                  name="password"
+                  control={control}
+                  render={({ field }) => (
+                    <StyledTextField
+                      {...field}
+                      label="New Password"
+                      type="password"
+                      error={!!errors.password}
+                      helperText={errors.password?.message}
+                    />
+                  )}
+                />
 
-              <Controller
-                name="confirmPassword"
-                control={control}
-                render={({ field }) => (
-                  <StyledTextField
-                    {...field}
-                    label="Confirm Password"
-                    type="password"
-                    error={!!errors.confirmPassword}
-                    helperText={errors.confirmPassword?.message}
-                  />
-                )}
-              />
+                <Controller
+                  name="confirmPassword"
+                  control={control}
+                  render={({ field }) => (
+                    <StyledTextField
+                      {...field}
+                      label="Confirm Password"
+                      type="password"
+                      error={!!errors.confirmPassword}
+                      helperText={errors.confirmPassword?.message}
+                    />
+                  )}
+                />
 
-              <CustomButton
-                title="Reset Password"
-                onClick={handleSubmit(onSubmit)}
-                disabled={isLoading}
-              />
-            </Stack>
-          </form>
-        </Stack>
-      </Box>
-    </AuthLayout>
+                <CustomButton
+                  title="Reset Password"
+                  onClick={handleSubmit(onSubmit)}
+                  disabled={isLoading}
+                />
+              </Stack>
+            </form>
+          </Stack>
+        </Box>
+      </AuthLayout>
+    </PublicRoute>
   );
 }

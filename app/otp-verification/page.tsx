@@ -3,6 +3,7 @@ import OTPInput from "@/Components/OtpInput";
 import BackButton from "@/Components/Shared-ui/BackButton";
 import CustomButton from "@/Components/Shared-ui/CustomButton";
 import CustomText from "@/Components/Shared-ui/CustomText";
+import PublicRoute from "@/Components/Shared-ui/PublicWrapper";
 import { colors } from "@/Constants/colors";
 import AuthLayout from "@/layouts/AuthLayout";
 import { useResendMutation, useVerifyOtpMutation } from "@/rtk/endpoints/authApi";
@@ -98,6 +99,7 @@ if(resendSuccess){
   }, [isSuccess]);
 
   return (
+    <PublicRoute>
     <AuthLayout>
       <Box
         display="flex"
@@ -198,5 +200,6 @@ if(resendSuccess){
         </Stack>
       </Box>
     </AuthLayout>
+    </PublicRoute>
   );
 }

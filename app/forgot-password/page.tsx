@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { showAlert } from "@/rtk/feature/alertSlice";
+import PublicRoute from "@/Components/Shared-ui/PublicWrapper";
 
 export default function ForgotPassword() {
   const {
@@ -44,7 +45,9 @@ export default function ForgotPassword() {
   };
   useEffect(() => {
     if (isSuccess) {
-      dispatch(showAlert({message:'OTP sent successfully', severity:'success'}))
+      dispatch(
+        showAlert({ message: "OTP sent successfully", severity: "success" })
+      );
       router.push(
         `/otp-verification?token=${
           data.verification_token
@@ -53,78 +56,80 @@ export default function ForgotPassword() {
     }
   }, [isSuccess]);
   return (
-    <AuthLayout>
-      <Box
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        width={"100%"}
-        height={"100%"}
-      >
-        <Stack
-          width={{ xs: "95%", sm: 480 }}
-          height={377}
-          maxWidth={{ xs: "95%", sm: 480 }}
-          maxHeight={377}
-          justifyContent={"flex-end"}
-          sx={{
-            position: "relative",
-            backgroundColor: colors.voilet900,
-            borderRadius: "32px",
-            p: { xs: "32px", sm: "64px" },
-            border: "1.5px",
-            borderColor: colors.gray700,
-            gap: { xs: "24px", sm: "42px" },
-          }}
+    <PublicRoute>
+      <AuthLayout>
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          width={"100%"}
+          height={"100%"}
         >
-          <Box
-            position={"absolute"}
-            top={10}
-            left={10}
-            width={"48px"}
-            height={"48px"}
+          <Stack
+            width={{ xs: "95%", sm: 480 }}
+            height={377}
+            maxWidth={{ xs: "95%", sm: 480 }}
+            maxHeight={377}
+            justifyContent={"flex-end"}
+            sx={{
+              position: "relative",
+              backgroundColor: colors.voilet900,
+              borderRadius: "32px",
+              p: { xs: "32px", sm: "64px" },
+              border: "1.5px",
+              borderColor: colors.gray700,
+              gap: { xs: "24px", sm: "42px" },
+            }}
           >
-            <BackButton />
-          </Box>
-          <CustomText text="Forgot Password" fw400 h1 align="center" />
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack gap={"16px"}>
-              <Controller
-                name="email"
-                control={control}
-                render={({ field }) => (
-                  <StyledTextField
-                    {...field}
-                    label="Email"
-                    type="email"
-                    error={!!errors.email}
-                    helperText={errors.email?.message}
-                  />
-                )}
-              />
-              <CustomButton
-                title="Check your inbox"
-                onClick={handleSubmit(onSubmit)}
-                disabled={isLoading}
-              />
-              <Stack
-                flexDirection={"row"}
-                alignItems={"center"}
-                justifyContent={"center"}
-                gap={"4px"}
-              >
-                <CustomText
-                  text="Have your password?"
-                  fw400
-                  p1
-                  color={colors.gray500}
+            <Box
+              position={"absolute"}
+              top={10}
+              left={10}
+              width={"48px"}
+              height={"48px"}
+            >
+              <BackButton />
+            </Box>
+            <CustomText text="Forgot Password" fw400 h1 align="center" />
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Stack gap={"16px"}>
+                <Controller
+                  name="email"
+                  control={control}
+                  render={({ field }) => (
+                    <StyledTextField
+                      {...field}
+                      label="Email"
+                      type="email"
+                      error={!!errors.email}
+                      helperText={errors.email?.message}
+                    />
+                  )}
                 />
-                <CustomLink title="Signin" link="/" />
+                <CustomButton
+                  title="Check your inbox"
+                  onClick={handleSubmit(onSubmit)}
+                  disabled={isLoading}
+                />
+                <Stack
+                  flexDirection={"row"}
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  gap={"4px"}
+                >
+                  <CustomText
+                    text="Have your password?"
+                    fw400
+                    p1
+                    color={colors.gray500}
+                  />
+                  <CustomLink title="Signin" link="/" />
+                </Stack>
               </Stack>
-            </Stack>
-          </form>
-        </Stack>
-      </Box>
-    </AuthLayout>
+            </form>
+          </Stack>
+        </Box>
+      </AuthLayout>
+    </PublicRoute>
   );
 }

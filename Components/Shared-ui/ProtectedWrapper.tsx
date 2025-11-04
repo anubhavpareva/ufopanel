@@ -3,18 +3,19 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function ProtectedRoute({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { user } = useAuth();
+  const user = useSelector((state:any)=>state.auth.user);
   const router = useRouter();
 
   useEffect(() => {
     if (!user) {
-      router.replace("/login");
+      router.replace("/");
     }
   }, [user, router]);
 

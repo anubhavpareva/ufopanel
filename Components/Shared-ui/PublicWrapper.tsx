@@ -3,13 +3,14 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function PublicRoute({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { user } = useAuth();
+  const user = useSelector((state:any)=>state.auth.user);
   const router = useRouter();
 
   useEffect(() => {

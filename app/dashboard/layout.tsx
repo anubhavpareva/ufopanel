@@ -1,4 +1,5 @@
 import NavBar from "@/Components/Shared-ui/NavBar";
+import ProtectedRoute from "@/Components/Shared-ui/ProtectedWrapper";
 import { Box } from "@mui/material";
 
 export default function DashboardLayout({
@@ -7,14 +8,20 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Box
-      display={"flex"}
-      flexDirection={"row"}
-      sx={{ background: "linear-gradient(145deg, #611EC6 50%, #3B82F6 100%)", height:'100vh' }}
-    >
-      <NavBar />
-      {/* <Sidebar /> */}
-      {children} {/* 👈 This is the Next.js equivalent of <Outlet /> */}
-    </Box>
+    <ProtectedRoute>
+      <Box
+        display={"flex"}
+        flexDirection={"row"}
+        minHeight={'100vh'}
+        sx={{
+          background: "linear-gradient(145deg, #611EC6 50%, #3B82F6 100%)",
+          py: 2,
+        }}
+      >
+        <NavBar />
+        {/* <Sidebar /> */}
+        {children} {/* 👈 This is the Next.js equivalent of <Outlet /> */}
+      </Box>
+    </ProtectedRoute>
   );
 }

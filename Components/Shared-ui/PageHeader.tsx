@@ -21,6 +21,7 @@ import LogoutDialog from "../Dialog-content/LogoutDialog";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import authSlice from "@/rtk/feature/authSlice";
+import { colors } from "@/Constants/colors";
 
 interface PageHeaderProps {
   title: string;
@@ -94,7 +95,7 @@ export default function PageHeader({ title }: PageHeaderProps) {
         <IconButton
           sx={{
             backgroundColor: "#0A0A1A",
-            color: "#fff",
+            color: colors.white,
             borderRadius: "50%",
             width: 40,
             height: 40,
@@ -116,7 +117,7 @@ export default function PageHeader({ title }: PageHeaderProps) {
             cursor: "pointer",
           }}
         >
-          {user.name.toUpperCase().slice(0, 2)}
+          {user?.name?.toUpperCase()?.slice(0, 2)}
         </Avatar>
 
         {/* Dropdown Menu */}
