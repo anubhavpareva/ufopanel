@@ -14,7 +14,9 @@ import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/Validations/LoginSchema";
-
+import { useDispatch } from "react-redux";
+import { showAlert } from "@/rtk/feature/alertSlice";
+import { loginUser } from "@/rtk/feature/authSlice";
 
 type LoginFormInputs = {
   email: string;
@@ -24,7 +26,7 @@ type LoginFormInputs = {
 export default function Home() {
   const navigate = useRouter();
   const [useLogin, { data, isLoading, isSuccess }] = useLoginMutation();
-
+  const dispatch = useDispatch();
   // ✅ Setup React Hook Form
   const {
     control,
@@ -50,6 +52,8 @@ export default function Home() {
   // ✅ Redirect if login successful
   useEffect(() => {
     if (isSuccess) {
+      dispatch(loginUser(data));
+      dispatch(showAlert({ message: "Log-in success", severity: "success" }));
       navigate.push("/dashboard");
     }
   }, [isSuccess, navigate]);
@@ -77,7 +81,13 @@ export default function Home() {
             gap: { xs: "24px", sm: "42px" },
           }}
         >
-          <Box position="absolute" top={10} left={10} width="48px" height="48px">
+          <Box
+            position="absolute"
+            top={10}
+            left={10}
+            width="48px"
+            height="48px"
+          >
             <BackButton />
           </Box>
 

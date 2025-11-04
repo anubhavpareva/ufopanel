@@ -19,6 +19,8 @@ import { useState } from "react";
 import CustomDialog from "./CustomDialog";
 import LogoutDialog from "../Dialog-content/LogoutDialog";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import authSlice from "@/rtk/feature/authSlice";
 
 interface PageHeaderProps {
   title: string;
@@ -29,7 +31,7 @@ export default function PageHeader({ title }: PageHeaderProps) {
   const [openDialog, setDialog] = useState(false);
   const open = Boolean(anchorEl);
   const router = useRouter();
-
+  const user = useSelector((state:any)=>state.auth.user);
   const handleAvatarClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -114,7 +116,7 @@ export default function PageHeader({ title }: PageHeaderProps) {
             cursor: "pointer",
           }}
         >
-          RS
+          {user.name.toUpperCase().slice(0, 2)}
         </Avatar>
 
         {/* Dropdown Menu */}

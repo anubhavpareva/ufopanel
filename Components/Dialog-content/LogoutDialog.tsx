@@ -4,6 +4,8 @@ import CustomText from "../Shared-ui/CustomText";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { colors } from "@/Constants/colors";
 import { useRouter } from "next/navigation";
+import { useLogoutMutation } from "@/rtk/endpoints/authApi";
+import { useEffect } from "react";
 
 interface LogoutDialogProps{
     handleClose:()=>void;
@@ -11,9 +13,20 @@ interface LogoutDialogProps{
 
 export default function LogoutDialog({handleClose}:LogoutDialogProps) {
     const router = useRouter();
-    const handleLogout = () =>{
-        router.replace('/');
+    const [logout, {isLoading, isSuccess}]= useLogoutMutation();
+    const handleLogout = async () =>{
+        try{
+          await logout({});
+        }
+        catch(err){
+          console.log(err);
+        }
     }
+    useEffect(()=>{
+      if(isSuccess){
+        router.replace('/');
+      }
+    },[isSuccess])
   return (
     <Stack sx={{ backgroundColor: colors.gray1000, gap: 3 }}>
       <Stack
